@@ -14,7 +14,6 @@ open Nat
 open Real
 
 open Rat
-
 theorem mathd_algebra_478 (b h v : ℝ) (h₀ : 0 < b ∧ 0 < h ∧ 0 < v) (h₁ : v = 1 / 3 * (b * h))
     (h₂ : b = 30) (h₃ : h = 13 / 2) : v = 65 :=
   by sorry
@@ -396,9 +395,9 @@ theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7 (f z : ℂ) (h�
 
 theorem mathd_numbertheory_247 (n : ℕ) (h₀ : 3 * n % 2 = 11) : n % 11 = 8 := by sorry
 #align mathd_numbertheory_247 mathd_numbertheory_247
-
+open scoped BigOperators
 theorem induction_pord1p1on2powklt5on2 (n : ℕ) (h₀ : 0 < n) :
-    (∏ k in Finset.Icc 1 n, 1 + (1 : ℝ) / 2 ^ k) < 5 / 2 := by sorry
+    (∏ i in (Finset.Icc 1 n), (1 + (1 : ℝ) / 2 ^ i)) < 5 / 2 := by sorry
 #align induction_pord1p1on2powklt5on2 induction_pord1p1on2powklt5on2
 
 theorem mathd_algebra_107 (x y : ℝ) (h₀ : x ^ 2 + 8 * x + y ^ 2 - 6 * y = 0) :
@@ -416,8 +415,12 @@ theorem amc12a_2013_p4 : (2 ^ 2014 + 2 ^ 2012) / (2 ^ 2014 - 2 ^ 2012) = (5 : �
 #align amc12a_2013_p4 amc12a_2013_p4
 
 theorem mathd_algebra_392 (n : ℕ) (h₀ : Even n)
-    (h₁ : (↑n - 2) ^ 2 + ↑n ^ 2 + (↑n + 2) ^ 2 = (12296 : ℕ)) :
-    (↑n - 2) * ↑n * (↑n + 2) / 8 = (32736 : ℕ) := by sorry
+    (h₁ : ((↑n:ℝ ) - 2) ^ 2 + ↑n ^ 2 + (↑n + 2) ^ 2 = (12296 )) :
+    ((↑n:ℝ ) - 2) * ↑n * (↑n + 2) / 8 = (32736 ) := by
+    rw [add_sq, sub_sq ] at h₁ ; ring_nf at h₁
+    rw [ (show (12296:ℝ ) = 8+64^2*3 by norm_num), add_right_inj, mul_left_inj', pow_left_inj] at h₁ <;> norm_num
+    simp [h₁]
+    norm_num
 #align mathd_algebra_392 mathd_algebra_392
 
 theorem mathd_numbertheory_314 (r n : ℕ) (h₀ : r = 1342 % 13) (h₁ : 0 < n) (h₂ : 1342 ∣ n)
@@ -425,10 +428,11 @@ theorem mathd_numbertheory_314 (r n : ℕ) (h₀ : r = 1342 % 13) (h₁ : 0 < n)
 #align mathd_numbertheory_314 mathd_numbertheory_314
 
 theorem induction_prod1p1onk3le3m1onn (n : ℕ) (h₀ : 0 < n) :
-    (∏ k in Finset.Icc 1 n, 1 + (1 : ℝ) / k ^ 3) ≤ (3 : ℝ) - 1 / ↑n := by sorry
+    (∏ k in Finset.Icc 1 n, (1 + (1 : ℝ) / k ^ 3)) ≤ (3 : ℝ) - 1 / ↑n := by sorry
 #align induction_prod1p1onk3le3m1onn induction_prod1p1onk3le3m1onn
 
-theorem mathd_numbertheory_343 : (∏ k in Finset.range 6, 2 * k + 1) % 10 = 5 := by sorry
+theorem mathd_numbertheory_343 : (∏ k in Finset.range 6, (2 * k + 1)) % 10 = 5 := by
+sorry
 #align mathd_numbertheory_343 mathd_numbertheory_343
 
 theorem mathd_algebra_756 (a b : ℝ) (h₀ : (2 : ℝ) ^ a = 32) (h₁ : a ^ b = 125) : b ^ a = 243 := by
@@ -456,8 +460,8 @@ theorem mathd_numbertheory_135 (n A B C : ℕ) (h₀ : n = 3 ^ 17 + 3 ^ 10) (h�
     100 * A + 10 * B + C = 129 := by sorry
 #align mathd_numbertheory_135 mathd_numbertheory_135
 
-theorem mathd_algebra_275 (x : ℝ) (h : ((11 : ℝ) ^ (1 / 4)) ^ (3 * x - 3) = 1 / 5) :
-    ((11 : ℝ) ^ (1 / 4)) ^ (6 * x + 2) = 121 / 25 :=
+theorem mathd_algebra_275 (x : ℝ) (h : ((11 : ℝ) ^ ((1:ℝ) / 4)) ^ (3 * x - 3) = 1 / 5) :
+    ((11 : ℝ) ^ ((1:ℝ) / 4)) ^ (6 * x + 2) = 121 / 25 :=
   by sorry
 #align mathd_algebra_275 mathd_algebra_275
 
@@ -465,10 +469,27 @@ theorem mathd_algebra_388 (x y z : ℝ) (h₀ : 3 * x + 4 * y - 12 * z = 10)
     (h₁ : -2 * x - 3 * y + 9 * z = -4) : x = 14 := by linarith
 #align mathd_algebra_388 mathd_algebra_388
 
-theorem amc12a_2020_p7 (a : ℕ → ℕ) (h₀ : a 0 ^ 3 = 1) (h₁ : a 1 ^ 3 = 8) (h₂ : a 2 ^ 3 = 27)
-    (h₃ : a 3 ^ 3 = 64) (h₄ : a 4 ^ 3 = 125) (h₅ : a 5 ^ 3 = 216) (h₆ : a 6 ^ 3 = 343) :
-    ↑(∑ k in Finset.range 7, 6 * (a:) ((k:ℕ  ) ^ (2 ):ℕ  )) - ↑(2 * ∑ k in Finset.range 6, a (k ^ 2):ℕ ) = (658 : ℤ) := by
-  sorry
+theorem amc12a_2020_p7
+  (a : ℕ → ℕ)
+  -- (h : (∀ x, a x > 0))
+  (h₀ : (a 0)^3 = 1)
+  (h₁ : (a 1)^3 = 8)
+  (h₂ : (a 2)^3 = 27)
+  (h₃ : (a 3)^3 = 64)
+  (h₄ : (a 4)^3 = 125)
+  (h₅ : (a 5)^3 = 216)
+  (h₆ : (a 6)^3 = 343) :
+  ∑ k in Finset.range 7, (6 * (a k)^2) - ↑(2 * ∑ k in Finset.range 6, (a k)^2) = 658 :=
+by
+  rw [show 1 = 1^3 by norm_num, pow_left_inj ] at h₀ <;> norm_num
+  rw [show 8 = 2^3 by norm_num, pow_left_inj ] at h₁ <;> norm_num
+  rw [show 27 = 3^3 by norm_num, pow_left_inj ] at h₂ <;> norm_num
+  rw [show 64= 4^3 by norm_num, pow_left_inj ] at h₃ <;> norm_num
+  rw [show 125= 5^3 by norm_num, pow_left_inj ] at h₄ <;> norm_num
+  rw [show 216= 6^3 by norm_num, pow_left_inj ] at h₅ <;> norm_num
+  rw [show 343 =7^3 by norm_num, pow_left_inj ] at h₆ <;> norm_num
+  repeat rw [Finset.sum_range_succ]
+  norm_num [h₀,h₁,h₂,h₃,h₄,h₅,h₆]
 #align amc12a_2020_p7 amc12a_2020_p7
 
 theorem imo_1981_p6 (f : ℕ → ℕ → ℕ) (h₀ : ∀ y, f 0 y = y + 1) (h₁ : ∀ x, f (x + 1) 0 = f x 1)
@@ -536,7 +557,9 @@ theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
 #align algebra_sum1onsqrt2to1onsqrt10000lt198 algebra_sum1onsqrt2to1onsqrt10000lt198
 
 theorem mathd_numbertheory_618 (n : ℕ) (p : ℕ → ℕ) (h₀ : ∀ x, p x = x ^ 2 - x + 41)
-    (h₁ : 1 < Nat.gcd (p n) (p (n + 1))) : 41 ≤ n := by sorry
+    (h₁ : 1 < Nat.gcd (p n) (p (n + 1))) (h₂: n>0) : 41 ≤ n := by
+contrapose! h₁
+interval_cases n <;> simp [h₀]
 #align mathd_numbertheory_618 mathd_numbertheory_618
 
 theorem amc12a_2020_p4 (S : Finset ℕ)
@@ -1025,7 +1048,7 @@ theorem amc12a_2009_p6 (m n p q : ℝ) (h₀ : p = 2 ^ m) (h₁ : q = 3 ^ n) :
 #align amc12a_2009_p6 amc12a_2009_p6
 
 theorem mathd_algebra_158 (a : ℕ) (h₀ : Even a)
-    (h₁ : ↑(∑ k in Finset.range 8, 2 * k + 1) - ↑(∑ k in Finset.range 5, (a + 2 * k) ) = (4 : ℤ)) :
+    (h₁ : ↑(∑ k in Finset.range 8, (2 * k + 1)) - ↑(∑ k in Finset.range 5, (a + 2 * k) ) = (4 : ℤ)) :
     a = 8 := by sorry
 #align mathd_algebra_158 mathd_algebra_158
 

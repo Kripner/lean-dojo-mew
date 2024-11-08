@@ -215,7 +215,7 @@ theorem imo_1962_p4 (S : Set ℝ)
       { x : ℝ |
         ∃ m : ℤ,
           x = π / 2 + m * π ∨
-            x = π / 4 + m * π / 2 ∨ x = π / 6 + m * π / 6 ∨ x = 5 * π / 6 + m * π / 6 } :=
+            x = π / 4 + m * π / 2 ∨ x = π / 6 + m * π ∨ x = 5 * π / 6 + m * π } :=
   by sorry
 #align imo_1962_p4 imo_1962_p4
 
@@ -328,8 +328,8 @@ theorem algebra_amgm_faxinrrp2msqrt2geq2mxm1div2x :
 theorem mathd_numbertheory_335 (n : ℕ) (h₀ : n % 7 = 5) : 5 * n % 7 = 4 := by sorry
 #align mathd_numbertheory_335 mathd_numbertheory_335
 
-theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n : ℕ, n ∣ Nat.sqrt 196) :
-    (∑ k in S, k) = 24 := by sorry
+theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n : ℕ, n ∈ S ↔ (n ∣ Nat.sqrt 196)) :
+    (∑ k in S, k) = 24 := by  sorry
 #align mathd_numbertheory_35 mathd_numbertheory_35
 
 theorem amc12a_2021_p7 (x y : ℝ) : 1 ≤ (x * y - 1) ^ 2 + (x + y) ^ 2 :=
@@ -338,7 +338,11 @@ theorem amc12a_2021_p7 (x y : ℝ) : 1 ≤ (x * y - 1) ^ 2 + (x + y) ^ 2 :=
 
 theorem mathd_algebra_327 (a : ℝ) (h₀ : 1 / 5 * abs (9 + 2 * a) < 1) : -7 < a ∧ a < -2 :=
   by
-  sorry
+  have h₁ := (mul_lt_mul_left (show 0 < (5 : ℝ) by linarith)).mpr h₀
+  have h₂ : abs (9 + 2 * a) < 5:= by linarith
+  have h₃ := abs_lt.mp h₂
+  cases' h₃ with h₃ h₄
+  constructor <;> nlinarith
 #align mathd_algebra_327 mathd_algebra_327
 
 theorem aime_1984_p15 (x y z w : ℝ)
@@ -514,7 +518,7 @@ theorem mathd_algebra_214 (a : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f x = a * (
 
 theorem mathd_algebra_96 (x y z a : ℝ) (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
     (h₁ : Real.log x - Real.log y = a) (h₂ : Real.log y - Real.log z = 15)
-    (h₃ : Real.log z - Real.log x = -7) : a = -8 := by sorry
+    (h₃ : Real.log z - Real.log x = -7) : a = -8 := by nlinarith [h₁, h₂, h₃]
 #align mathd_algebra_96 mathd_algebra_96
 
 theorem amc12_2001_p2 (a b n : ℕ) (h₀ : 1 ≤ a ∧ a ≤ 9) (h₁ : 0 ≤ b ∧ b ≤ 9) (h₂ : n = 10 * a + b)
@@ -930,8 +934,8 @@ theorem algebra_manipexpr_apbeq2cceqiacpbceqm2 (a b c : ℂ) (h₀ : a + b = 2 *
 theorem mathd_numbertheory_370 (n : ℕ) (h₀ : n % 7 = 3) : (2 * n + 1) % 7 = 0 := by sorry
 #align mathd_numbertheory_370 mathd_numbertheory_370
 
-theorem mathd_algebra_437 (x y : ℝ) (n : ℤ) (h₀ : x ^ 3 = -45) (h₁ : y ^ 3 = -101) (h₂ : x < n)
-    (h₃ : ↑n < y) : n = -4 := by sorry
+theorem mathd_algebra_437 (x y : ℝ) (n : ℤ) (h₀ : x ^ 3 = -45) (h₁ : y ^ 3 = -101) (h₂ : x > n)
+    (h₃ : ↑n > y) : n = -4 := by sorry
 #align mathd_algebra_437 mathd_algebra_437
 
 theorem imo_1966_p5 (x a : ℕ → ℝ) (h₀ : a 1 ≠ a 2) (h₁ : a 1 ≠ a 3) (h₂ : a 1 ≠ a 4)
