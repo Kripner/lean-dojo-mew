@@ -1,0 +1,11 @@
+name = "MiniF2F"
+version = "0.1.0"
+defaultTargets = ["MiniF2F"]
+
+[[lean_lib]]
+name = "MiniF2F"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.15.0"
