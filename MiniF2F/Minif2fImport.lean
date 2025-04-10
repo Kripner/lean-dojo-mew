@@ -1,5 +1,5 @@
 import Mathlib.Algebra.Algebra.Basic
-import Mathlib.Algebra.Order.Floor
+--import Mathlib.Algebra.Order.Floor
 -- import Mathlib.Algebra.Associated
 -- import Mathlib.Algebra.BigOperators.Basic
 import Mathlib.Algebra.BigOperators.Pi
@@ -12,7 +12,6 @@ import Mathlib.Algebra.Group.Commute.Hom
 import Mathlib.Algebra.Group.Commute.Units
 -- import Mathlib.Algebra.GroupPower.Basic
 -- import Mathlib.Algebra.GroupPower.Identities
-import Mathlib.Algebra.Order.Floor
 import Mathlib.Algebra.QuadraticDiscriminant
 import Mathlib.Algebra.Ring.Basic
 import Mathlib.Analysis.MeanInequalitiesPow
@@ -73,12 +72,12 @@ import Mathlib.Dynamics.FixedPoints.Basic
 import Mathlib.LinearAlgebra.AffineSpace.AffineMap
 import Mathlib.LinearAlgebra.AffineSpace.Independent
 import Mathlib.LinearAlgebra.AffineSpace.Ordered
-import Mathlib.LinearAlgebra.FiniteDimensional
+-- import Mathlib.LinearAlgebra.FiniteDimensional
 import Mathlib.Logic.Equiv.Basic
 import Mathlib.Order.Filter.Basic
 import Mathlib.Order.WellFounded
 import Mathlib.Topology.Basic
-import Mathlib.Topology.Instances.NNReal
+-- import Mathlib.Topology.Instances.NNReal
 
 import Mathlib.Data.ZMod.Basic
 import Mathlib.RingTheory.Int.Basic
